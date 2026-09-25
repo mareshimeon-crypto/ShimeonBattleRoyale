@@ -1,4 +1,4 @@
-name: Build APK
+name: Build Godot Android APK
 
 on:
   workflow_dispatch:
@@ -12,22 +12,25 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: Set up JDK
-        uses: actions/setup-java@v4
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v4
+
+      - name: Export Godot Android APK
+        uses: NodotProject/godot-export@v7.0.0
         with:
-          distribution: temurin
-          java-version: '17'
-
-      - name: Make gradlew executable
-        run: chmod +x gradlew
-
-      - name: Build APK
-        run: ./gradlew assembleDebug
+          godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.5/Godot_v4.5-stable_linux.x86_64.zip
+          godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.5/Godot_v4.5-stable_export_templates.tpz
+          relative_project_path: ./
+          presets_to_export: Android
+          export_debug: true
+          use_preset_export_path: true
+          cache: true
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: app-debug
-          path: app/build/outputs/apk/debug/*.apk
+          name: ShimeonBattleRoyale-APK
+          path: '**/*.apk'
+          if-no-files-found: error
