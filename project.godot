@@ -7,10 +7,10 @@ window/size/viewport_height=720
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
-[renderinhg]
-           renderer/rendering_method="gl_compatibility"
-           renderer/rendering_method.mobile="gl_compatibility"
-          textures/vram_compression/import_etc2_astc=true
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
 
 [input]
 move_left={"deadzone":0.5,"events":[Object(InputEventKey,"physical_keycode":65)]}
